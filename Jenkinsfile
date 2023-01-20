@@ -1,14 +1,14 @@
 pipeline {
     agent any
     environment {
-      registry = "krishxo/jenkins-docker"
+      registry = "salonivichare/poc"
       registryCredential = 'dockerhub'
       dockerImage = ''
     }
     stages{
         stage('Build Maven'){
             steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/krish-xo/POC-5.git']]])
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/SaloniVichare1999/poc5.git']])
                 bat 'mvn clean'
                 bat 'mvn package'
 		bat 'mvn install'
