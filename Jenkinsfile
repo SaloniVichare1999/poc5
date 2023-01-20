@@ -15,12 +15,13 @@ pipeline {
 		sh 'mvn install'
             }
         }
-        stage('Docker Build') {
-		steps {
-			sh docker.build("my-image:${env.BUILD_ID}\n
-	  }
-       }
-		
+        stage('Build docker image'){
+            steps{
+                script{
+			        dockerImage = docker.build registry + ":$BUILD_NUMBER"
+			 }
+            }
+        }
         stage('Push image to DockerHUB'){
             steps{
          script {
