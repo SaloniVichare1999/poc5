@@ -1,9 +1,10 @@
 pipeline {
     agent any
     environment {
-      registry = "salonivichare/poc"
+      registry = "salonivichare/poc"	    
       registryCredential = 'dockerhub'
       dockerImage = ''
+      HASH = GIT_COMMIT.take(7)
     }
     stages{
         stage('Build Maven'){
@@ -17,7 +18,7 @@ pipeline {
         stage('Build docker image'){
             steps{
                 script{
-			        dockerImage = docker.build registry + ":$BUILD_NUMBER"
+			        bat 'docker build -t salonivichare/poc:%HASH% .'
 			 }
             }
         }
