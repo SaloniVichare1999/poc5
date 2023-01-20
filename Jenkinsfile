@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Build docker image'){
             steps{
-		    sh 'docker build salonivichare/poc:$BUILD_NUMBER' 
+		    sh dockerImage = docker.build registry + ":$BUILD_NUMBER"
             }
         }
         stage('Push image to DockerHUB'){
