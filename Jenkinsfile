@@ -18,7 +18,7 @@ pipeline {
         stage('Build docker image'){
             steps{
                 script{
-			        sh 'docker build registry:%HASH% .'
+			        docker build registry + ":%HASH%"
 			 }
             }
         }
