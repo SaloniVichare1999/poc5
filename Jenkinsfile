@@ -17,7 +17,9 @@ pipeline {
         }
         stage('Docker Build') {
 		steps {
-          		sh 'docker build -t salonivichare/poc:latest .'
+			script {
+          			docker.build registry + ":$BUILD_NUMBER"
+			}
 	  }
        }
 		
