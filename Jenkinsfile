@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
       registry = "salonivichare/poc"	    
-      registryCredential = 'dockerhub'
+      registryCredential = 'Dockerhub'
       dockerImage = ''
       HASH = GIT_COMMIT.take(7)
     }
@@ -15,13 +15,12 @@ pipeline {
 		sh 'mvn install'
             }
         }
-        stage('Build docker image'){
-            steps{
-                script{
-			      sh 'docker image build salonivichare/poc'
-			 }
-            }
-        }
+        stage('Docker Build') {
+		steps {
+          		sh 'docker build -t salonivichare/poc:latest .'
+	  }
+       }
+		
         stage('Push image to DockerHUB'){
             steps{
          script {
