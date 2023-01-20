@@ -18,7 +18,7 @@ pipeline {
         stage('Build docker image'){
             steps{
                 script{
-			        sh 'docker build salonivichare/poc:%HASH% .'
+			        sh 'docker build registry:%HASH% .'
 			 }
             }
         }
