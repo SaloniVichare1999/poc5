@@ -15,10 +15,10 @@ pipeline {
 		sh 'mvn install'
             }
         }
-        node('Build docker image'){
+        stage('Build docker image'){
             steps{
                 script{
-			        bat 'docker build -t salonivichare/poc:%HASH% .'
+			        sh 'docker build -t salonivichare/poc:%HASH% .'
 			 }
             }
         }
