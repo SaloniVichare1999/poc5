@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Docker Build') {
 		steps {
-			sh docker.build("my-image:${env.BUILD_ID}
+			sh docker.build("my-image:${env.BUILD_ID}\n
 	  }
        }
 		
