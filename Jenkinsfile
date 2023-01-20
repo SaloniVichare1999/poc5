@@ -16,7 +16,9 @@ pipeline {
         }
         stage('Build docker image'){
             steps{
-		    sh dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                script{
+			        dockerImage = docker.build registry + ":$BUILD_NUMBER"
+			 }
             }
         }
         stage('Push image to DockerHUB'){
